@@ -1,0 +1,41 @@
+.switch {
+  position: relative;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.switchContainer {
+  position: absolute;
+  width: 4rem;
+  height: 2.1rem;
+  border-radius: 1.05rem;
+  display: flex;
+  align-items: center;
+}
+
+.switchedOn {
+  box-shadow: 0 0 0 1.5px #736df8 inset;
+}
+
+.switchedOff {
+  box-shadow: 0 0 0 1.5px #777777 inset;
+}
+
+.switchSlider {
+  height: 1.7rem;
+  width: 1.7rem;
+  border-radius: 50%;
+  transition: transform 0.2s ease-out;
+}
+
+.onSlider {
+  background: transparent linear-gradient(133deg, #736df8 0%, #706adf 100%) 0%
+    0% no-repeat padding-box;
+}
+
+.offSlider {
+  background-color: #777777;
+}

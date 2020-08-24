@@ -1,0 +1,17 @@
+.container {
+  background: #2e2f3d;
+  height: 100vh;
+  padding: 5% 10%;
+}
+
+.firstRow {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  border-radius: 6px;
+  position: relative;
+  background-color: rgba(0,0,0,.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
