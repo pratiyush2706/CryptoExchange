@@ -23,3 +23,8 @@
   height: 3rem;
   background-color: #fff;
 }
+
+.coinSelector {
+  border: 0;
+  outline: 0;
+}

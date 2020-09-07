@@ -6,7 +6,7 @@ import InputBox from '../InputBox';
 
 const mapStateToProps = state => state.dashboard;
 
-const Exchange = ({ allCoins, sendCoin, getCoin, inputCoinValue, dispatch }) => {
+const Exchange = ({ allCoins, sendCoin, getCoin, inputCoinValue, exchangedCoinValue, exchangeCoins, dispatch }) => {
 
   const onCoinChange = (event) => {
     console.log(event.target.value);
@@ -27,6 +27,7 @@ const Exchange = ({ allCoins, sendCoin, getCoin, inputCoinValue, dispatch }) => 
             value={inputCoinValue}
             onChange={({ target }) => {
               dispatch({ type: SET_INPUT_VALUE, inputCoinValue: target.value });
+              dispatch(getExchangeRate(sendCoin.symbol, getCoin.symbol));
             }}
             style={{
               fontFamily: 'inherit',
@@ -71,10 +72,9 @@ const Exchange = ({ allCoins, sendCoin, getCoin, inputCoinValue, dispatch }) => 
             type="number"
             label="Exchange"
             name="exchangeRate"
-            value={inputCoinValue}
+            value={exchangedCoinValue}
             onChange={({ target }) => {
               dispatch({ type: SET_INPUT_VALUE, inputCoinValue: target.value });
-              dispatch(getExchangeRate(sendCoin.symbol, getCoin.symbol));
             }}
             disabled
             style={{
@@ -98,7 +98,7 @@ const Exchange = ({ allCoins, sendCoin, getCoin, inputCoinValue, dispatch }) => 
               flex: '40%'
             }}
           >
-            {allCoins.map((coin, index) => (
+            {exchangeCoins.map((coin, index) => (
               <option
                 key={coin.logoUrl}
                 value={sendCoin.name}

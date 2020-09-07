@@ -11,10 +11,11 @@ export const getAllCoins = () => async (dispatch) => {
     const response = await get('https://run.mocky.io/v3/6a68f6d1-c9bc-4c4a-bc5a-3b4598f67caa');
     const { data } = response;
     const sendCoin = data.filter(coin => coin.is_active);
-    console.log(sendCoin[0]);
+    const exchangeCoins = [...data];
+    exchangeCoins.shift();
 
     dispatch({ type: SET_ACTIVE_COIN, sendCoin: sendCoin[0], getCoin: sendCoin[1] });
-    dispatch({ type: SET_ALL_COINS_DATA, allCoins: data });
+    dispatch({ type: SET_ALL_COINS_DATA, allCoins: data, exchangeCoins });
     dispatch({ type: IS_LOADING_COINS_DATA, isLoading: false });
   } catch (error) {
     dispatch({ type: IS_LOADING_COINS_DATA, isLoading: false });
@@ -22,11 +23,14 @@ export const getAllCoins = () => async (dispatch) => {
   }
 };
 
+export const SET_EXCHANGED_COIN_VALUE = 'SET_EXCHANGED_COIN_VALUE';
+
 export const getExchangeRate = (sendCode, getCode) => async (dispatch) => {
   try {
     const response = await post(`https://min-api.cryptocompare.com/data/price?fsym=${sendCode}&tsyms=${getCode} `);
-    console.log(response);
-
+    const { data } = response;
+    const exchangedCoinValue = data[Object.keys(data)[0]];
+    dispatch({ type: SET_EXCHANGED_COIN_VALUE, exchangedCoinValue });
   } catch (error) {
     console.log(error);
   }
